@@ -5,6 +5,13 @@ import { Play, Music, Headphones, Mic, Facebook, Twitter, Instagram} from 'lucid
 import Link from 'next/link';
 
 export default function Home() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -62,7 +69,7 @@ export default function Home() {
       </section>
 
       {/* Services Preview Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-800">
+      <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-800">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
