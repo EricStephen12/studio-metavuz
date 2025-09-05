@@ -3,8 +3,12 @@
 import { motion } from 'framer-motion';
 import { Play, Music, Headphones, Mic, Facebook, Twitter, Instagram} from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useState } from 'react';
 
 export default function Home() {
+  const [imageLoading, setImageLoading] = useState(true);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -18,10 +22,18 @@ export default function Home() {
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img 
+          {imageLoading && (
+            <div className="absolute inset-0 bg-gray-800 animate-pulse"></div>
+          )}
+        <Image
             src="/images/IMG_4846.jpg" 
-            alt="Studio Metavuz" 
-            className="w-full h-full object-cover"
+            alt="Studio Metavuz - Professional Music Production Studio" 
+            fill
+          priority
+            className={`object-cover transition-opacity duration-500 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
+            sizes="100vw"
+            quality={90}
+            onLoad={() => setImageLoading(false)}
           />
           <div className="absolute inset-0 bg-gray-900/80"></div>
         </div>
@@ -45,13 +57,13 @@ export default function Home() {
         
         {/* Social Media Icons - Bottom Left */}
         <div className="absolute bottom-16 left-16 flex flex-col space-y-12">
-          <a href="#" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
             <Facebook size={28} />
           </a>
-          <a href="#" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
             <Twitter size={28} />
           </a>
-          <a href="#" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
             <Instagram size={28} />
           </a>
           </div>
@@ -145,7 +157,7 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-cyan-400 hover:bg-cyan-300 text-black px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
+                className="bg-cyan-400 hover:bg-cyan-300 text-black px-8 py-4 rounded-full text-xl font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
               >
                 View All Services
               </motion.button>
@@ -189,11 +201,15 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -10 }}
                 className="group relative overflow-hidden rounded-2xl aspect-square"
-              >
-                <img
+        >
+          <Image
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="lazy"
+                  quality={85}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -223,7 +239,7 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-cyan-400 hover:bg-cyan-300 text-black px-12 py-4 rounded-full text-xl font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
+                className="bg-cyan-400 hover:bg-cyan-300 text-black px-12 py-4 rounded-full text-2xl font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
               >
                 Book Your Session Now
               </motion.button>

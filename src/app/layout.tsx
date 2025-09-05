@@ -15,8 +15,57 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Studio Metavuz - Where Your Sound Comes Alive",
-  description: "Professional recording, mixing, and mastering studio in Lagos. Clean sound, hard beats, and a chill space to create.",
+  title: "Studio Metavuz - Professional Music Production Studio Lagos",
+  description: "Professional recording, mixing, and mastering studio in Lagos. Clean sound, hard beats, and a chill space to create. Beat production, vocal recording, mixing & mastering services.",
+  keywords: "music studio Lagos, recording studio, beat production, mixing mastering, music production, studio booking, professional recording, music studio Nigeria",
+  authors: [{ name: "Studio Metavuz" }],
+  creator: "Studio Metavuz",
+  publisher: "Studio Metavuz",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://studio-metavuz.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: "Studio Metavuz - Professional Music Production Studio Lagos",
+    description: "Professional recording, mixing, and mastering studio in Lagos. Clean sound, hard beats, and a chill space to create.",
+    url: 'https://studio-metavuz.vercel.app',
+    siteName: 'Studio Metavuz',
+    images: [
+      {
+        url: '/images/IMG_4846.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Studio Metavuz - Professional Music Production Studio',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Studio Metavuz - Professional Music Production Studio Lagos",
+    description: "Professional recording, mixing, and mastering studio in Lagos. Clean sound, hard beats, and a chill space to create.",
+    images: ['/images/IMG_4846.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+  },
 };
 
 export default function RootLayout({

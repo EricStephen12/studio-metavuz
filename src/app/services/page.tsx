@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { Music, Mic, Headphones, Play, Download, Zap, Star, Music2 } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Services() {
   const services = [
@@ -140,13 +142,15 @@ export default function Services() {
                   </ul>
 
                   {/* CTA Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-full bg-cyan-400 hover:bg-cyan-300 text-black px-6 py-3 rounded-full font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
-                  >
-                    Get Started
-                  </motion.button>
+                  <Link href="/booking">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-full bg-cyan-400 hover:bg-cyan-300 text-black px-6 py-3 rounded-full font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
+                    >
+                      Get Started
+                    </motion.button>
+                  </Link>
                 </div>
               </motion.div>
             ))}
@@ -254,12 +258,15 @@ export default function Services() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative overflow-hidden rounded-3xl group"
+              className="relative overflow-hidden rounded-3xl group h-80"
             >
-              <img
+              <Image
                 src="/images/mixer.jpeg"
-                alt="Professional Mixing Console"
-                className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                alt="Professional Mixing Console - Studio Equipment"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={90}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
@@ -272,12 +279,15 @@ export default function Services() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative overflow-hidden rounded-3xl group"
+              className="relative overflow-hidden rounded-3xl group h-80"
             >
-              <img
+              <Image
                 src="/images/ZQ3mXhrV.jpeg"
-                alt="Studio Equipment Setup"
-                className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                alt="Studio Equipment Setup - Professional Recording Environment"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={90}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
@@ -330,13 +340,15 @@ export default function Services() {
             <p className="text-xl text-white mb-8 font-light">
               Let's discuss your needs and create something amazing together.
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-cyan-400 hover:bg-cyan-300 text-black px-12 py-4 rounded-full text-xl font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
-            >
-              Book a Consultation
-            </motion.button>
+            <Link href="/booking">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-cyan-400 hover:bg-cyan-300 text-black px-12 py-4 rounded-full text-2xl font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
+              >
+                Book a Consultation
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </section>

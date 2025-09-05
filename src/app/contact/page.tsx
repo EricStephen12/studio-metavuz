@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -21,10 +22,29 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Contact form submitted:', formData);
-    setIsSubmitted(true);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        console.error('Failed to send message');
+        alert('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('Error sending message. Please try again.');
+    }
   };
 
   if (isSubmitted) {
@@ -49,7 +69,7 @@ export default function Contact() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsSubmitted(false)}
-            className="bg-cyan-400 hover:bg-cyan-300 text-black px-8 py-3 rounded-full font-bold transition-all duration-300"
+            className="bg-cyan-400 hover:bg-cyan-300 text-black px-8 py-3 rounded-full text-lg font-bold transition-all duration-300"
           >
             Send Another Message
           </motion.button>
@@ -156,7 +176,7 @@ export default function Contact() {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-cyan-400 hover:bg-cyan-300 text-black py-4 rounded-lg font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25 flex items-center justify-center space-x-2"
+                  className="w-full bg-cyan-400 hover:bg-cyan-300 text-black py-4 rounded-lg text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25 flex items-center justify-center space-x-2"
                 >
                   <Send className="h-5 w-5" />
                   <span>Send Message</span>
@@ -317,20 +337,24 @@ export default function Contact() {
               Don't wait - book your session today and let's create something amazing together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-cyan-400 hover:bg-cyan-300 text-black px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
-              >
-                Book a Session
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-cyan-400 hover:bg-cyan-400/10 text-white px-8 py-4 rounded-full text-lg font-bold transition-all duration-300"
-              >
-                View Services
-              </motion.button>
+              <Link href="/booking">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-cyan-400 hover:bg-cyan-300 text-black px-8 py-4 rounded-full text-xl font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
+                >
+                  Book a Session
+                </motion.button>
+              </Link>
+              <Link href="/services">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border-2 border-cyan-400 hover:bg-cyan-400/10 text-white px-8 py-4 rounded-full text-lg font-bold transition-all duration-300"
+                >
+                  View Services
+                </motion.button>
+              </Link>
             </div>
           </motion.div>
         </div>

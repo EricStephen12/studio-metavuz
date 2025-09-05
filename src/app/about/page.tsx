@@ -2,6 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { Music, Headphones, Mic, Award, Users, Clock, Star, Music2 } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useState } from 'react';
+import { ImageSkeleton } from '@/components/LoadingSkeleton';
 
 export default function About() {
   return (
@@ -52,11 +56,14 @@ export default function About() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="relative overflow-hidden rounded-3xl">
-                <img
+              <div className="relative overflow-hidden rounded-3xl h-96">
+                <Image
                   src="/images/IMG_4846.jpg"
-                  alt="Studio Metavuz Interior"
-                  className="w-full h-96 object-cover"
+                  alt="Studio Metavuz Interior - Professional Music Production Studio"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={90}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6">
@@ -174,12 +181,15 @@ export default function About() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative overflow-hidden rounded-3xl group"
+              className="relative overflow-hidden rounded-3xl group h-80"
             >
-              <img
+              <Image
                 src="/images/IMG_4847.jpg"
-                alt="Studio Control Room"
-                className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                alt="Studio Control Room - Professional Mixing Console"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={90}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
@@ -192,12 +202,15 @@ export default function About() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative overflow-hidden rounded-3xl group"
+              className="relative overflow-hidden rounded-3xl group h-80"
             >
-              <img
+              <Image
                 src="/images/recording.jpeg"
-                alt="Recording Session"
-                className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+                alt="Recording Session - Professional Music Recording Studio"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={90}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
@@ -288,20 +301,24 @@ export default function About() {
               Let's discuss your project and bring your musical vision to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-cyan-400 hover:bg-cyan-300 text-black px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
-              >
-                Book a Session
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-cyan-400 hover:bg-cyan-400/10 text-white px-8 py-4 rounded-full text-lg font-bold transition-all duration-300"
-              >
-                Contact Us
-              </motion.button>
+              <Link href="/booking">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-cyan-400 hover:bg-cyan-300 text-black px-8 py-4 rounded-full text-xl font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
+                >
+                  Book a Session
+                </motion.button>
+              </Link>
+              <Link href="/contact">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border-2 border-cyan-400 hover:bg-cyan-400/10 text-white px-8 py-4 rounded-full text-lg font-bold transition-all duration-300"
+                >
+                  Contact Us
+                </motion.button>
+              </Link>
             </div>
           </motion.div>
         </div>

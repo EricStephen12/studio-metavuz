@@ -37,11 +37,38 @@ export default function Booking() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log('Booking submitted:', formData);
-    setIsSubmitted(true);
+    
+    try {
+      const response = await fetch('/api/booking', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          date: '',
+          time: '',
+          duration: '',
+          message: ''
+        });
+      } else {
+        console.error('Failed to submit booking');
+        alert('Failed to submit booking. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      alert('Error submitting booking. Please try again.');
+    }
   };
 
   if (isSubmitted) {
@@ -66,7 +93,7 @@ export default function Booking() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsSubmitted(false)}
-            className="bg-cyan-400 hover:bg-cyan-300 text-black px-8 py-3 rounded-full font-bold transition-all duration-300"
+            className="bg-cyan-400 hover:bg-cyan-300 text-black px-8 py-3 rounded-full text-lg font-bold transition-all duration-300"
           >
             Book Another Session
           </motion.button>
@@ -255,7 +282,7 @@ export default function Booking() {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-cyan-400 hover:bg-cyan-300 text-black py-4 rounded-lg font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
+                  className="w-full bg-cyan-400 hover:bg-cyan-300 text-black py-4 rounded-lg text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
                 >
                   Book Now
                 </motion.button>
