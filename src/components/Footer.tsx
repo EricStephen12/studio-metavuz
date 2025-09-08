@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Music, MapPin, Phone, Mail } from 'lucide-react';
+import { Music, MapPin, Phone, Mail, Facebook, Twitter, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -41,11 +41,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-cyan-400" />
-                <span className="text-white">+234 (0) 123 456 7890</span>
+                <span className="text-white">08080721098</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-cyan-400" />
-                <span className="text-white">info@studiometavuz.com</span>
+                <span className="text-white">Studiometavuz@gmail.com</span>
               </div>
             </div>
           </motion.div>
@@ -79,11 +79,39 @@ const Footer = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="border-t border-gray-700 mt-8 pt-8 text-center"
+          className="border-t border-gray-700 mt-8 pt-8"
         >
-          <p className="text-white">
-            © 2024 Studio Metavuz. All rights reserved.
-          </p>
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-white">
+              © 2024 Studio Metavuz. All rights reserved.
+            </p>
+            <div className="flex space-x-4">
+              <a
+                href="https://facebook.com/Metavuz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-cyan-400 transition-colors duration-200"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href="https://twitter.com/Metavuz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-cyan-400 transition-colors duration-200"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a
+                href="https://instagram.com/Studiometavuz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-cyan-400 transition-colors duration-200"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
         </motion.div>
       </div>
     </footer>

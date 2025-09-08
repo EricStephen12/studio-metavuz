@@ -57,13 +57,13 @@ export default function Home() {
         
         {/* Social Media Icons - Bottom Left */}
         <div className="absolute bottom-16 left-16 flex flex-col space-y-12">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
+          <a href="https://facebook.com/Metavuz" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
             <Facebook size={28} />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
+          <a href="https://twitter.com/Metavuz" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
             <Twitter size={28} />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
+          <a href="https://instagram.com/Studiometavuz" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
             <Instagram size={28} />
           </a>
           </div>

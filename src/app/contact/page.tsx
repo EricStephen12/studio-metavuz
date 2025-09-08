@@ -220,7 +220,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-white">Phone / WhatsApp</h4>
-                      <p className="text-white">+234 (0) 123 456 7890</p>
+                      <p className="text-white">08080721098</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -229,7 +229,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-white">Email</h4>
-                      <p className="text-white">info@studiometavuz.com</p>
+                      <p className="text-white">Studiometavuz@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
