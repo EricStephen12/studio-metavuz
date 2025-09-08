@@ -12,6 +12,7 @@ export default function Booking() {
     service: '',
     date: '',
     time: '',
+    duration: '',
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
