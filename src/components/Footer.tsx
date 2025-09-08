@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Music, MapPin, Phone, Mail, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Music, MapPin, Phone, Mail, Facebook, Twitter, Instagram, Music2 } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -109,6 +109,14 @@ const Footer = () => {
                 className="text-gray-400 hover:text-cyan-400 transition-colors duration-200"
               >
                 <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="https://tiktok.com/@Metavuz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-cyan-400 transition-colors duration-200"
+              >
+                <Music2 className="h-5 w-5" />
               </a>
             </div>
           </div>
