@@ -12,6 +12,10 @@ Create a `.env.local` file in the root directory with your email credentials:
 # Email Configuration for Nodemailer
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-app-password
+
+# Admin Panel Configuration
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=metavuz2024
 ```
 
 ### 2. Gmail Setup (Recommended)

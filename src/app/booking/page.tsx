@@ -319,7 +319,7 @@ export default function Booking() {
                     <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
                     <div>
                       <p className="text-white font-semibold">Contact</p>
-                      <p className="text-gray-400">+234 (0) 123 456 7890</p>
+                      <p className="text-gray-400">08080721098</p>
                     </div>
                   </div>
                 </div>

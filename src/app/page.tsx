@@ -46,7 +46,7 @@ export default function Home() {
 
         {/* Hero Content */}
         <div className="relative z-10 text-right pr-20">
-                      <h1 className="text-6xl md:text-8xl font-bold mb-4 leading-tight">
+                      <h1 className="text-6xl md:text-8xl font-bold mb-4 leading-tight font-[var(--font-orbitron)]">
             <span className="block text-white drop-shadow-2xl tracking-wider">STUDIO</span>
             <span className="block text-cyan-400 drop-shadow-2xl tracking-wider">METAVUZ</span>
             </h1>
