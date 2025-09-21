@@ -37,7 +37,7 @@ You can also use other email providers by modifying the transporter configuratio
 
 Example for other providers:
 ```javascript
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   host: 'smtp.your-provider.com',
   port: 587,
   secure: false,
