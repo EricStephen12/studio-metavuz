@@ -6,8 +6,8 @@ export async function POST(request: NextRequest) {
     const { username, password } = await request.json();
 
     // Simple authentication - in production, use proper hashing
-    const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
-    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'metavuz2024';
+    const ADMIN_USERNAME = process.env.NEXT_PUBLIC_ADMIN_USERNAME || 'admin';
+    const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'metavuz2024';
 
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       // Set authentication cookie

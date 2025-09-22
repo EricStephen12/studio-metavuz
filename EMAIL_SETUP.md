@@ -10,12 +10,12 @@ Create a `.env.local` file in the root directory with your email credentials:
 
 ```env
 # Email Configuration for Nodemailer
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
+NEXT_PUBLIC_EMAIL_USER=your-email@gmail.com
+NEXT_PUBLIC_EMAIL_PASS=your-app-password
 
 # Admin Panel Configuration
-ADMIN_USERNAME=admin
-ADMIN_PASSWORD=metavuz2024
+NEXT_PUBLIC_ADMIN_USERNAME=admin
+NEXT_PUBLIC_ADMIN_PASSWORD=metavuz2024
 ```
 
 ### 2. Gmail Setup (Recommended)
@@ -42,8 +42,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.NEXT_PUBLIC_EMAIL_USER,
+    pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
   },
 });
 ```
