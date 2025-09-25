@@ -36,6 +36,14 @@ function writeBookings(bookings: any[]) {
 
 export async function POST(request: NextRequest) {
   try {
+    // Debug logging
+    console.log('=== BOOKING API DEBUG ===');
+    console.log('Environment variables:', {
+      EMAIL_USER: process.env.NEXT_PUBLIC_EMAIL_USER ? 'SET' : 'NOT SET',
+      EMAIL_PASS: process.env.NEXT_PUBLIC_EMAIL_PASS ? 'SET' : 'NOT SET',
+      NODE_ENV: process.env.NODE_ENV,
+    });
+
     const { 
       name, 
       email, 
@@ -46,6 +54,8 @@ export async function POST(request: NextRequest) {
       duration, 
       message 
     } = await request.json();
+
+    console.log('Booking data received:', { name, email, phone, service, date, time });
 
     // Validate required fields
     if (!name || !email || !phone || !service || !date || !time) {
@@ -75,6 +85,7 @@ export async function POST(request: NextRequest) {
     writeBookings(bookings);
 
     // Create transporter
+    console.log('Creating email transporter...');
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -82,6 +93,10 @@ export async function POST(request: NextRequest) {
         pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
       },
     });
+
+    console.log('Testing email connection...');
+    await transporter.verify();
+    console.log('Email connection verified successfully');
 
     // Email content
     const mailOptions = {
@@ -126,16 +141,25 @@ export async function POST(request: NextRequest) {
     };
 
     // Send email
+    console.log('Sending email...');
     await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully');
 
     return NextResponse.json(
       { message: 'Booking request sent successfully' },
       { status: 200 }
     );
   } catch (error) {
-    console.error('Error sending booking email:', error);
+    console.error('=== BOOKING API ERROR ===');
+    console.error('Error details:', error);
+    console.error('Error message:', error instanceof Error ? error.message : 'Unknown error');
+    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
+    
     return NextResponse.json(
-      { error: 'Failed to send booking request' },
+      { 
+        error: 'Failed to send booking request',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     );
   }
