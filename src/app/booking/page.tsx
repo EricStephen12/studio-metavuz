@@ -16,6 +16,8 @@ export default function Booking() {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const services = [
     'Beat Production',
@@ -40,8 +42,12 @@ export default function Booking() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError('');
     
     try {
+      console.log('Submitting booking with data:', formData);
+      
       const response = await fetch('/api/booking', {
         method: 'POST',
         headers: {
@@ -49,6 +55,9 @@ export default function Booking() {
         },
         body: JSON.stringify(formData),
       });
+
+      const responseData = await response.json();
+      console.log('Booking response:', responseData);
 
       if (response.ok) {
         setIsSubmitted(true);
@@ -63,12 +72,14 @@ export default function Booking() {
           message: ''
         });
       } else {
-        console.error('Failed to submit booking');
-        alert('Failed to submit booking. Please try again.');
+        console.error('Failed to submit booking:', responseData);
+        setError(responseData.error || responseData.details || 'Failed to submit booking. Please try again.');
       }
     } catch (error) {
       console.error('Error submitting booking:', error);
-      alert('Error submitting booking. Please try again.');
+      setError('Network error. Please check your connection and try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -138,6 +149,13 @@ export default function Booking() {
               className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-3xl p-8"
             >
               <h2 className="text-2xl font-bold text-white mb-6">Session Details</h2>
+              
+              {error && (
+                <div className="bg-red-900/50 border border-red-500 rounded-lg p-4 mb-6">
+                  <p className="text-red-200 text-sm">{error}</p>
+                </div>
+              )}
+              
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name */}
                 <div>
@@ -281,11 +299,16 @@ export default function Booking() {
                 {/* Submit Button */}
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-cyan-400 hover:bg-cyan-300 text-black py-4 rounded-lg text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
+                  disabled={isLoading}
+                  whileHover={{ scale: isLoading ? 1 : 1.02 }}
+                  whileTap={{ scale: isLoading ? 1 : 0.98 }}
+                  className={`w-full py-4 rounded-lg text-lg font-bold transition-all duration-300 shadow-lg ${
+                    isLoading 
+                      ? 'bg-gray-600 text-gray-400 cursor-not-allowed' 
+                      : 'bg-cyan-400 hover:bg-cyan-300 text-black hover:shadow-cyan-400/25'
+                  }`}
                 >
-                  Book Now
+                  {isLoading ? 'Submitting...' : 'Book Now'}
                 </motion.button>
               </form>
             </motion.div>
