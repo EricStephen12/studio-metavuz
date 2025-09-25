@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     // Test nodemailer configuration
     const nodemailer = await import('nodemailer');
     
-    const transporter = nodemailer.default.createTransporter({
+    const transporter = nodemailer.default.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.NEXT_PUBLIC_EMAIL_USER,
