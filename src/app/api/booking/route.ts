@@ -1,38 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import fs from 'fs';
-import path from 'path';
-
-const BOOKINGS_FILE = path.join(process.cwd(), 'data', 'bookings.json');
-
-// Ensure data directory exists
-function ensureDataDir() {
-  const dataDir = path.dirname(BOOKINGS_FILE);
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-}
-
-// Read bookings from file
-function readBookings() {
-  ensureDataDir();
-  if (!fs.existsSync(BOOKINGS_FILE)) {
-    return [];
-  }
-  try {
-    const data = fs.readFileSync(BOOKINGS_FILE, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Error reading bookings:', error);
-    return [];
-  }
-}
-
-// Write bookings to file
-function writeBookings(bookings: any[]) {
-  ensureDataDir();
-  fs.writeFileSync(BOOKINGS_FILE, JSON.stringify(bookings, null, 2));
-}
 
 export async function POST(request: NextRequest) {
   try {
@@ -65,24 +32,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Store booking in local file
-    const bookings = readBookings();
-    const newBooking = {
-      id: `booking_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      name,
-      email,
-      phone,
-      service,
-      date,
-      time,
-      duration: duration || null,
-      message: message || null,
-      status: 'pending',
-      createdAt: new Date().toISOString()
-    };
-    
-    bookings.push(newBooking);
-    writeBookings(bookings);
+    // Note: File storage removed for Vercel compatibility
+    // Bookings are only sent via email
 
     // Create transporter
     console.log('Creating email transporter...');

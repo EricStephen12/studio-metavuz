@@ -1,38 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import fs from 'fs';
-import path from 'path';
-
-const CONTACTS_FILE = path.join(process.cwd(), 'data', 'contacts.json');
-
-// Ensure data directory exists
-function ensureDataDir() {
-  const dataDir = path.dirname(CONTACTS_FILE);
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-}
-
-// Read contacts from file
-function readContacts() {
-  ensureDataDir();
-  if (!fs.existsSync(CONTACTS_FILE)) {
-    return [];
-  }
-  try {
-    const data = fs.readFileSync(CONTACTS_FILE, 'utf8');
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Error reading contacts:', error);
-    return [];
-  }
-}
-
-// Write contacts to file
-function writeContacts(contacts: any[]) {
-  ensureDataDir();
-  fs.writeFileSync(CONTACTS_FILE, JSON.stringify(contacts, null, 2));
-}
 
 export async function POST(request: NextRequest) {
   try {
@@ -46,21 +13,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Store contact in local file
-    const contacts = readContacts();
-    const newContact = {
-      id: `contact_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      name,
-      email,
-      phone: phone || null,
-      subject,
-      message,
-      createdAt: new Date().toISOString(),
-      read: false
-    };
-    
-    contacts.push(newContact);
-    writeContacts(contacts);
+    // Note: File storage removed for Vercel compatibility
+    // Contacts are only sent via email
 
     // Create transporter (using Gmail as example)
     const transporter = nodemailer.createTransport({
